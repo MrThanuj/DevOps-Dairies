@@ -1,0 +1,18 @@
+#!/bin/bash
+sudo apt install -y default-jdk
+
+if command -v java
+then
+    VERSION=$(java -version 2>&1 | awk -F '"' 'NR==1 {print $2}')
+    MAJOR=$(echo $VERSION | cut -d "." -f1)
+
+    if [ $MAJOR -ge 11 ]
+    then
+        echo "Java 11 or higher is installed."
+        echo "Installation successful."
+    else
+        echo "Older Java version installed."
+    fi
+else
+    echo "Java is not installed."
+fi
